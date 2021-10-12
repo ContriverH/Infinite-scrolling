@@ -10,16 +10,15 @@ export default function App() {
     setPageNumber(1); // doing a new query will start the page from the beginning
   }
 
-  useBookSearch(query, pageNumber);
+  const { loading, books, error, hasMore } = useBookSearch(query, pageNumber);
   return (
     <>
       <input type="text" onChange={handleSearch}></input>
-      <div>Title</div>
-      <div>Title</div>
-      <div>Title</div>
-      <div>Title</div>
-      <div>Loading...</div>
-      <div>Error</div>
+      {books.map((book) => (
+        <div key={book}>{book}</div>
+      ))}
+      <div>{loading && "Loading..."}</div>
+      <div>{error && "Error"}</div>
     </>
   );
 }
