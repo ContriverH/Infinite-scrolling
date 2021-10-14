@@ -32,7 +32,7 @@ export default function useBookSearch(query, pageNumber) {
       })
       .catch((e) => {
         // this catch needs to be implemented, because after each cancellation there is an event cancellation error in the console.
-        if (axios.isCancel()) return; // axios provides isCancel() to check if the cancel() is envoked or not.
+        if (axios.isCancel(e)) return; // axios provides isCancel() to check if the cancel() is envoked or not.
         setError(true);
       });
     return () => cancel(); // this will be called first after rerendering
